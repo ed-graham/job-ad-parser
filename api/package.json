@@ -1,0 +1,38 @@
+{
+  "name": "job-ad-parser",
+  "version": "1.0.0",
+  "description": "Filter job adverts to match your own criteria",
+  "main": "build/index.js",
+  "scripts": {
+    "clean": "rimraf ./node_modules",
+    "build": "rimraf ./build && tsc",
+    "lint": "eslint . --ext .ts",
+    "prettier-format": "prettier --config .prettierrc \"src/**/*.ts\" --write",
+    "start": "npm run build && node build/index.js",
+    "start-dev": "nodemon",
+    "test": "test"
+  },
+  "keywords": [
+    "job",
+    "advert",
+    "parser"
+  ],
+  "author": "Ed Graham",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^14.14.16",
+    "@typescript-eslint/eslint-plugin": "^4.11.0",
+    "@typescript-eslint/parser": "^4.11.0",
+    "eslint": "^7.16.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-prettier": "^3.3.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "@ed-graham/scrape-jobs": "file:../packages/tarballs/ed-graham-scrape-jobs-0.0.1.tgz"
+  }
+}
