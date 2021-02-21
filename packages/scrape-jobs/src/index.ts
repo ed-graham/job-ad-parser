@@ -1,2 +1,2 @@
-export { IScrapeJobs } from './types'
+export { IScrapeJobs, IScrapedJob, IScrapedJobs } from './types'
 export { scrapeJobs } from './functions'

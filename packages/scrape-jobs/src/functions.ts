@@ -1,11 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 import jsdom from 'jsdom';
-import { IScrapeJobs } from './types'
+import { IScrapedJobs, IScrapeJobs } from './types'
 
 const { JSDOM } = jsdom;
 
-export const scrapeJobs = async (scrapeJob: IScrapeJobs): Promise<string> => {
-  let htmlFragment: string = '';
+export const scrapeJobs = async (scrapeJob: IScrapeJobs): Promise<IScrapedJobs> => {
+  let scrapedJobs: IScrapedJobs = { html: '', jobs: []};
   await axios
     .get(scrapeJob.url)
     .then(function (response: AxiosResponse) {
@@ -17,15 +17,18 @@ export const scrapeJobs = async (scrapeJob: IScrapeJobs): Promise<string> => {
           `${scrapeJob.outerSelector} ${scrapeJob.innerSelector}`
         )
         .forEach((element: any) => {
-          htmlFragment = htmlFragment.concat(
+          // scrape individual jobs
+          scrapedJobs.jobs.push({link: '', html: element.textContent});
+          // combine all jobs into a single HTML blob
+          scrapedJobs.html = scrapedJobs.html.concat(
             '<br /><br />' + element.textContent
           );
         });
-      return htmlFragment;
+      return scrapedJobs;
     })
     .catch(function (error: any) {
       // handle error
       console.log(error);
     });
-  return htmlFragment;
+  return scrapedJobs;
 };

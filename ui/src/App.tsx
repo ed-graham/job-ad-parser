@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { JobListing } from './JobListing'
-import { scrapeJobs, IScrapeJobs } from '@ed-graham/scrape-jobs';
+import { scrapeJobs, IScrapeJobs, IScrapedJobs, IScrapedJob } from '@ed-graham/scrape-jobs';
 
 function App() {
   const [isLoaded, setIsLoaded] = useState(false);
